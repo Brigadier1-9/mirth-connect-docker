@@ -7,9 +7,12 @@ ENV MIRTH_CONNECT_VERSION 3.4.1.8057.b139
 # ensure you use the same uid
 RUN useradd -u 1000 mirth
 
+ENV http_proxy http://172.25.18.157:8080
+ENV https_proxy http://172.25.18.157:8080
+
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.9
-RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
+RUN gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget gettext && rm -rf /var/lib/apt/lists/* \
   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
   && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \

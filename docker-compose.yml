@@ -8,6 +8,7 @@ services:
     ports:
       - "9080:8080"
       - "9443:8443"
+      - "6661:6661"
     environment:
       MIRTH_DB_USERNAME: mirth
       MIRTH_DB_PASSWORD: mirth
